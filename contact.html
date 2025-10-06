@@ -1,155 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-    * {margin: 0;padding: 0;box-sizing: border-box;}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us | Cake Factory</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    body {min-height: 100vh;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background: linear-gradient(154deg, rgb(255, 115, 0), rgb(6, 6, 121));color: white;}
+    body {
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(154deg, rgb(255, 115, 0), rgb(6, 6, 121));
+      color: white;
+    }
 
-    header {padding: 1rem;background-color: rgba(0, 0, 0, 0.2);}
+    header {
+      padding: 1rem;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
 
-    .brand {display: flex;flex-direction: row;justify-content: space-between;align-items: center;flex-wrap: wrap;}
+    .brand {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-    .brand h1 {font-size: 2.5rem;color: white;}
+    .brand h1 {
+      font-size: 2.5rem;
+      color: white;
+    }
 
-    .nav {display: flex;flex-wrap: wrap;gap: 10px;align-items: center;justify-content: center;}
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
 
-    .nav a {font-size: 18px;padding: 8px 12px;border-radius: 10px;text-decoration: none;color: white;transition: 0.3s ease;}
+    .nav a {
+      font-size: 18px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: white;
+      transition: 0.3s ease;
+    }
 
-    .nav a.active {background: #e69b54;color: #fff;}
+    .nav a.active {
+      background: #e69b54;
+      color: #fff;
+    }
 
-    .nav a:hover {background: white;color: #2563eb;}
+    .nav a:hover {
+      background: white;
+      color: #2563eb;
+    }
 
-    .nav-toggle {display: none;}
+    main {
+      display: grid;
+      gap: 2rem;
+      margin: 2rem;
+    }
 
-    main {display: grid;gap: 2rem;margin: 2rem;}
-    
-    .footerparent{display: flex;flex-direction: row;justify-content: space-around;align-items: center;flex-wrap: wrap;background: rgba(0, 0, 0, 0.438);}
-    
-    .value{display: flex;flex-direction: row;justify-content: center;align-items: center;}
-    
-    </style>
+    main h1:first-of-type {
+      font-size: 4rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    }
+
+    .value {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      flex-wrap: wrap;
+    }
+
+    .value h1 {
+      font-size: 1.2rem;
+      font-weight: normal;
+    }
+
+    .value ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .value ul li {
+      margin-bottom: 0.5rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .value ul li:hover {
+      transform: translateX(5px);
+      color: #ffd369;
+    }
+
+    .footerparent {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      background: rgba(0, 0, 0, 0.438);
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    .footerparent h2, .footerparent h3, .footerparent h4 {
+      margin-bottom: 0.5rem;
+    }
+
+    .footerparent ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footerparent ul li:hover {
+      color: #fcbf49;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .brand, .value, .footerparent {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      main {
+        margin: 1rem;
+        gap: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <section class="brand" style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;flex-wrap: wrap;">
-            <h1>CAKE FACTORY</h1>
-            <nav class="nav">
-                <a href="index.html">Home</a>
-                <a href="about.html" >About Us</a>
-                <a href="menu.html">Menu Gallery</a>
-                <a href="step1.html ">Order Now</a>
-                <a href="#"class="active">Contact Us</a>
-            </nav>
-        </section>
+  <header>
+    <section class="brand">
+      <h1>CAKE FACTORY</h1>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="menu.html">Menu Gallery</a>
+        <a href="step1.html">Order Now</a>
+        <a href="#" class="active">Contact Us</a>
+      </nav>
+    </section>
   </header>
+
   <main>
-    <h1 style="font-size: 4rem">CONTACT US</h1>
-    
+    <h1>CONTACT US</h1>
+
     <div class="value">
-        <div style="font-size: 1.3rem;"><h1>Location&nbsp;:&nbsp;</h1></div>
-        <div><h1>abc\123, qwer,sdf,sdfrewrfgwrg,qefwf</h1></div>
-    </div>
-    
-    <div class="value">
-        <div style="font-size: 1.3rem;"><h1>Message Us In &nbsp;:&nbsp;&nbsp;&nbsp;</h1></div>
-        <div>
-            <ul>
-                <li><h1>Whatsapp</h1></li>
-                <li><h1>Messanger</h1></li>
-                <li><h1>Instagram</h1></li>
-                <li><h1>Telegram</h1></li>
-                <li><h1>Viber</h1></li>
-            </ul>
-        </div>
+      <h1>Location:</h1>
+      <h1>abc\123, qwer, sdf, sdfrewrfgwrg, qefwf</h1>
     </div>
 
     <div class="value">
-        <div style="font-size: 1.3rem;"><h1>Whatsapp&nbsp;:&nbsp;</h1></div>
-        <div><h1>+8801234567890</h1></div>
-    </div>
-    
-    <div class="value">
-        <div style="font-size: 1.3rem;"><h1>Phone No. 1&nbsp;:&nbsp;</h1></div>
-        <div><h1>+8801234567890</h1></div>
-    </div>
-
-
-    <div class="value">
-        <div style="font-size: 1.3rem;"><h1>Phone No. 2&nbsp;:&nbsp;</h1></div>
-        <div><h1>+8801234567890</h1></div>
+      <h1>Message Us In:</h1>
+      <ul>
+        <li><h1>Whatsapp</h1></li>
+        <li><h1>Messenger</h1></li>
+        <li><h1>Instagram</h1></li>
+        <li><h1>Telegram</h1></li>
+        <li><h1>Viber</h1></li>
+      </ul>
     </div>
 
-    <div class="value">
-        <div style="font-size: 1.3rem;"><h1>Active time&nbsp;:&nbsp;</h1></div>
-        <div><h1>9.00 AM - 6.00PM</h1></div>
-    </div>
+    <div class="value"><h1>Whatsapp:</h1><h1>+8801234567890</h1></div>
+    <div class="value"><h1>Phone No. 1:</h1><h1>+8801234567890</h1></div>
+    <div class="value"><h1>Phone No. 2:</h1><h1>+8801234567890</h1></div>
+    <div class="value"><h1>Active Time:</h1><h1>9.00 AM - 6.00 PM</h1></div>
+    <div class="value"><h1>Active Time in Holidays:</h1><h1>9.00 AM - 4.00 PM</h1></div>
+    <div class="value"><h1>Email 1:</h1><h1>contact_to_me@example.com</h1></div>
+    <div class="value"><h1>Email 2:</h1><h1>contact_to_me@example.com</h1></div>
 
     <div class="value">
-        <div style="font-size: 1.3rem;"><h1>Active time in holidays&nbsp;:&nbsp;</h1></div>
-        <div><h1>9.00 AM - 4.00PM</h1></div>
+      <h1>Follow Us On:</h1>
+      <ul>
+        <li><h1>Facebook</h1></li>
+        <li><h1>YouTube</h1></li>
+        <li><h1>Instagram</h1></li>
+        <li><h1>Twitter</h1></li>
+        <li><h1>Github</h1></li>
+      </ul>
     </div>
-
-    <div class="value">
-        <div style="font-size: 1.3rem;"><h1>Email 1&nbsp;:&nbsp;</h1></div>
-        <div><h1>contact_to_me@example.com</h1></div>
-    </div>
-
-    <div class="value">
-        <div style="font-size: 1.3rem;"><h1>Email 2&nbsp;:&nbsp;</h1></div>
-        <div><h1>contact_to_me@example.com</h1></div>
-    </div>
-
-    <div class="value">
-        <div style="font-size: 1.3rem;"><h1>Follow Us On&nbsp;:&nbsp;&nbsp;&nbsp;</h1></div>
-        <div>
-            <ul>
-                <li><h1>Facebook</h1></li>
-                <li><h1>Youtube</h1></li>
-                <li><h1>Instagram</h1></li>
-                <li><h1>twitter</h1></li>
-                <li><h1>Github</h1></li>
-            </ul>
-        </div>
-    </div>
-
-    
-    <div>
-        <!-- la\ocation -->
-    </div>
-
-    
   </main>
-  
-    <footer>
-        <div class="footerparent">
-            <div style="
-            margin-top: 2rem;
-            margin-bottom: 1.8rem;">
-                <h2>&copy;Cake Factory Official website</h2>
-                <h3>released in 2025</h3>
-                <h3>please do not use it in any harmful activity.</h3>
-                <h3>If you find any bugs, feel free to notify us. <br> 
-                    contact: +88012345678910 
-                    <br>email.to_me@gmail.com
-                    <br>report-bugs-here.com
-                </h3>
-                <h2>RATE US: ⭐⭐⭐⭐⭐</h2>
-            </div>
-            <div>
-                <ul>
-                    <h2 style="margin-bottom: 1rem;">follow us on:</h2>
-                    <li><h4>FACEBOOK</h4></li>
-                    <li><h4>YOUTUBE</h4></li>
-                    <li><h4>INSTAGRAM</h4></li>
-                    <li><h4>WHATSAPP</h4></li>
-                    <li><h4>GITHUB</h4></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+
+  <footer>
+    <div class="footerparent">
+      <div>
+        <h2>&copy; Cake Factory Official Website</h2>
+        <h3>Released in 2025</h3>
+        <h3>Please do not use it in any harmful activity.</h3>
+        <h3>
+          If you find any bugs, feel free to notify us. <br />
+          Contact: +88012345678910 <br />
+          Email: email.to_me@gmail.com <br />
+          Report: report-bugs-here.com
+        </h3>
+        <h2>RATE US: ⭐⭐⭐⭐⭐</h2>
+      </div>
+      <div>
+        <ul>
+          <h2 style="margin-bottom: 1rem;">Follow us on:</h2>
+          <li><h4>FACEBOOK</h4></li>
+          <li><h4>YOUTUBE</h4></li>
+          <li><h4>INSTAGRAM</h4></li>
+          <li><h4>WHATSAPP</h4></li>
+          <li><h4>GITHUB</h4></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
