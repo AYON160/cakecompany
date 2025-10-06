@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cake Factory - Cake Landing Page</title>
+  <style>
+    * {margin: 0;padding: 0;box-sizing: border-box;}
+
+    body {min-height: 100vh;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background: linear-gradient(154deg, rgb(255, 115, 0), rgb(6, 6, 121));color: white;}
+
+    header {padding: 1rem;background-color: rgba(0, 0, 0, 0.2);}
+
+    .brand {display: flex;flex-direction: row;justify-content: space-between;align-items: center;flex-wrap: wrap;}
+
+    .brand h1 {font-size: 2.5rem;color: white;}
+
+    .nav {display: flex;flex-wrap: wrap;gap: 10px;align-items: center;justify-content: center;}
+
+    .nav a {font-size: 18px;padding: 8px 12px;border-radius: 10px;text-decoration: none;color: white;transition: 0.3s ease;}
+
+    .nav a.active {background: #e69b54;color: #fff;}
+
+    .nav a:hover {background: white;color: #2563eb;}
+
+    .nav-toggle {display: none;}
+
+    main {display: grid;gap: 2rem;margin: 2rem;}
+
+    .card {display: flex;flex-direction: row;align-items: center;border: 6px solid rgb(219, 8, 209);padding: 1rem;gap: 1rem;flex-wrap: wrap;border-radius: 10px;background: radial-gradient(1200px 400px at 20% -20%, #3d0364 0%, transparent 60%),linear-gradient(135deg, #17011d, #8a0462);}
+
+    .card:nth-child(even) {flex-direction: row-reverse;}
+
+    .imagecontainer img {width: 100%;max-width: 500px;height: auto;border-radius: 10px;object-fit: cover;transition: .5s ease;}
+
+    .imagecontainer img:hover {transform: scale(1.2);}
+
+    .caption {flex: 1;display: flex;flex-direction: column;justify-content: space-between;gap: 1rem;}
+
+    .caption h1 {font-size: 2.5rem;}
+
+    .caption h3 {font-weight: normal;line-height: 1.6;}
+
+    .rating {font-size: 1.5rem;}
+
+    .order-btn-h {display: flex;flex-direction: row;justify-content: space-evenly;}
+    
+    .order-btn, .c-btn:hover {background: #ff7300;color: white;padding: 10px 20px;border-radius: 8px;text-decoration: none;font-weight: bold;transition: 0.3s ease;;}
+    
+    .c-btn {background: white;color: #ff7300;padding: 10px 20px;border-radius: 8px;text-decoration: none;font-weight: bold;transition: 0.3s ease;;}
+   
+    .btn-h {background: rgba(0, 0, 0, 0.2);color: #ff7300;border-radius: 8px;text-decoration: none; display: flex; flex-direction:row;justify-content: space-around;}
+
+    .btn-h a{background: linear-gradient(154deg, rgb(187, 40, 187), rgb(255, 189, 255));color: #000000;padding: 10px 20px;border-radius: 8px;text-decoration: none;font-weight: bold;transition: 0.3s ease;margin: 10px;}
+
+    .order-btn:hover {background: white;color: #ff7300;}
+
+    @media (max-width: 768px) {
+      .card {flex-direction: column !important;text-align: center;}
+
+      .imagecontainer img {max-width: 90vw;height: auto;}
+
+      .brand {flex-direction: column;gap: 1rem;}
+    }
+
+    .up2{display: flex;flex-direction: row;align-items: center;justify-content: space-evenly;}
+
+    .up2 h1{font-size: 4.5rem;}
+
+    .cardholder{gap: 200rem;}
+
+    .card{animation: imagereveal both;animation-timeline: view(50% 2%);}
+    
+    @keyframes imagereveal{
+        from{filter: saturate(0) contrast(0) brightness(.1) blur(5px);opacity: 0;scale: 0.95;translate: 0 4rem;}
+        to{filter: none;opacity: 1;scale: 1;translate: 0 0;}
+    }
+    .d1212{animation: fadeup both;animation-timeline: view(60% 5%);}
+    
+    @keyframes fadeup{
+        from{opacity: 0;transform: translateY(10px) scale(0.5);}
+        to{opacity: 1;transform: translateY(0) scale(1);}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <section class="brand" style="display: flex;flex-direction: row;justify-content: space-between;align-items: center;flex-wrap: wrap;">
+      <h1>CAKE FACTORY</h1>
+      <nav class="nav">
+        <a href="#" class="active">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="menu.html">Menu Gallery</a>
+        <a href="step1.html">Order Now</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+    </section>
+  </header>
+
+  <main>
+    <section class="up2">
+        <div>
+            <h1>Where every cake tells <br>a story</h1>
+            <h2 style="font-size: 2.2rem;margin-top: 3rem;margin-bottom: 3rem;">“Baking joy and sweetness for every celebration</h2>
+            <h2>Experience the perfect blend of taste and artistry with our beautifully crafted cakes, baked fresh daily just for you</h2>
+        </div>
+        <div>
+            <img src="static/FB_IMG_1755480222660.jpg" alt="" style="height: 90vh;">
+        </div>
+    </section>
+    <section class="btn-h">
+        <a href="#">View Cart</a>
+        <a href="step1.html">Order Now</a>
+        <a href="contact.html">Contact Us</a>
+        
+    </section>
+    <section class="cardholder">
+        <section class="card" style="margin-bottom: 2rem;">
+        <div class="imagecontainer">
+            <img src="static/IMG_20250815_115608.jpg" alt="Delicious Chocolate Cake" />
+        </div>
+        <div class="caption">
+            <h1>CHOCOLATE CAKE</h1>
+            <h3>What could you expect from a chocolate cake? Is your answer only chocolate and cream?
+            If yes, you're wrong. Just taste THIS! It will change your mind. Don't forget to leave a review...</h3>
+            <div class="rating">Rating: ⭐⭐⭐⭐⭐</div>
+            <div class="order-btn-h">
+                <a href="#" class="order-btn">Order Now</a>
+                <a href="#" class="c-btn">Add to cart</a>
+            </div>
+        </div>
+        </section>
+
+        <section class="card" style="margin-bottom: 2rem;">
+        <div class="imagecontainer">
+            <img src="static/IMG_20250815_115608.jpg" alt="Red Vanilla Cake" />
+        </div>
+        <div class="caption">
+            <h1>RED VANILLA CAKE</h1>
+            <h3>Think vanilla is plain? Think again. Our Red Vanilla Cake combines the smooth elegance of vanilla with a vibrant twist. Rich, fluffy, and unforgettable.</h3>
+            <div class="rating">Rating: ⭐⭐⭐⭐⭐</div>
+            <div class="order-btn-h">
+                <a href="#" class="order-btn">Order Now</a>
+                <a href="#" class="c-btn">Add to cart</a>
+            </div>
+        </div>
+        </section>
+
+        <section class="card" style="margin-bottom: 2rem;">
+        <div class="imagecontainer">
+            <img src="static/IMG_20250815_115608.jpg" alt="Delicious Colorful Cake" />
+        </div>
+        <div class="caption">
+            <h1>COLORFUL CAKE</h1>
+            <h3>People only like 'Chocolate cake', isn't it true? OK, though MANY people love other flavours like vanima, fruit, strawberry and chocolate, but be sure they can't miss our Colorful edition</h3>
+            <div class="rating">Rating: ⭐⭐⭐⭐⭐</div>
+            <div class="order-btn-h">
+                <a href="#" class="order-btn">Order Now</a>
+                <a href="#" class="c-btn">Add to cart</a>
+            </div>
+        </div>
+        </section>
+
+        <section class="card">
+        <div class="imagecontainer">
+            <img src="static/images/cupcake/c1.png" alt="Red Vanilla Cake" />
+        </div>
+        <div class="caption">
+            <h1>CUPCAKE</h1>
+            <h3>HI, I am cupcake. I know i am common, famous, popular all over the world. But taste me, you will find something more better, tasty, delicious. just see how good i am looking...</h3>
+            <div class="rating">Rating: ⭐⭐⭐⭐⭐</div>
+            <div class="order-btn-h">
+                <a href="#" class="order-btn">Order Now</a>
+                <a href="#" class="c-btn">Add to cart</a>
+            </div>
+        </div>
+        </section>
+    </section>
+    <section class="up2">
+        <div class="d1212">
+            <h1>Where every cake tells <br>a story</h1>
+            <h2 style="font-size: 2.2rem;margin-top: 3rem;margin-bottom: 3rem;">Sweet moments start with our delicious cakes</h2>
+            <h2>From classic flavors to custom designs, we create delicious<br>cakes that bring joy, sweetness, and smiles to every occasion. contact us for more</h2>
+        </div>
+        <div>
+            <img src="static/FB_IMG_1751913869465.jpg" alt="" style="height: 90vh;">
+        </div>
+    </section>
+  </main>
+</body>
+  <style>
+    .footerparent{
+        display: flex;flex-direction: row;justify-content: space-around;align-items: center;flex-wrap: wrap;background: rgba(0, 0, 0, 0.438);
+    }
+  </style>
+    <footer>
+        <div class="footerparent">
+            <div style="
+            margin-top: 2rem;
+            margin-bottom: 1.8rem;">
+                <h2>&copy;Cake Factory Official website</h2>
+                <h3>released in 2025</h3>
+                <h3>please do not use it in any harmful activity.</h3>
+                <h3>If you find any bugs, feel free to notify us. <br> 
+                    contact: +88012345678910 
+                    <br>email.to_me@gmail.com
+                    <br>report-bugs-here.com
+                </h3>
+                <h2>RATE US: ⭐⭐⭐⭐⭐</h2>
+            </div>
+            <div>
+                <ul>
+                    <h2 style="margin-bottom: 1rem;">follow us on:</h2>
+                    <li><h4>FACEBOOK</h4></li>
+                    <li><h4>YOUTUBE</h4></li>
+                    <li><h4>INSTAGRAM</h4></li>
+                    <li><h4>WHATSAPP</h4></li>
+                    <li><h4>GITHUB</h4></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</html>

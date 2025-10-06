@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="nav.css">
+  <title>Cake Order 1/3</title>
+  <style>
+    .section{
+      font-size: 2rem;
+    }
+    input[type=text]{
+      height: 10vh;
+      width: 60vh;
+    }
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    textarea{
+      height: 20vh;
+      width: 80vw;
+      font-size: x-large;
+    }
+    .inputradio{
+      margin: 3rem;
+      display: flex;
+      justify-content: space-evenly;
+      font-size: 2rem;
+    }
+    select{
+      width: 30vw;
+      font-size: 1.8rem;
+      background-color: rgba(0, 0, 0, 0.333);
+      margin-bottom: 2rem;
+    }
+    body {
+      background:linear-gradient(154deg, rgb(255, 115, 0), rgb(6, 6, 121));
+      font-family: Arial, sans-serif;
+      margin: 2vh 5vw;
+      font-size: larger;
+    }
+
+    .section {
+      display: none;
+      margin-top: 2vh;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 28vw);
+      gap: 1vw;
+      justify-content: center;
+      margin-top: 2vh;
+    }
+
+    .image-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+    }
+
+    .image-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 0.4vw solid transparent;
+      cursor: pointer;
+      box-sizing: border-box;
+      border-radius: 8px;
+      transition: border-color 0.3s ease;
+    }
+
+    .selected-img {
+      border-color: green;
+    }
+
+    /* Replace hover-only with toggle btn-group on mobile */
+    .btn-group {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.333);
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 1;
+      display: none;
+      border-radius: 8px;
+    }
+
+    /* Show btn-group on hover for desktop */
+    @media (hover: hover) and (pointer: fine) {
+      .image-wrapper:hover .btn-group {
+        display: flex;
+      }
+    }
+
+    /* Mobile toggle class */
+    .btn-group.active {
+      display: flex !important;
+    }
+
+    .btn-group button {
+      margin: 0.5vh;
+      font-size: 1.5vh;
+      padding: 6px 12px;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      background-color: #28a745;
+      color: white;
+      transition: background-color 0.2s ease;
+    }
+    .btn-group button:hover {
+      background-color: #218838;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .image-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3vh;
+      }
+
+      .image-wrapper {
+        width: 90vw;
+        aspect-ratio: 1 / 1;
+      }
+
+      .image-grid img {
+        border-width: 1vw;
+      }
+
+      .btn-group button {
+        font-size: 2vh;
+        padding: 10px 16px;
+      }
+
+      /* Make file input mobile-friendly */
+      input[type="file"] {
+        font-size: 1.8vh;
+      }
+    }
+
+    /* Lightbox Styles */
+    #lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    #lightbox-overlay img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    }
+    #lightbox-overlay .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 3rem;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Inline notification style */
+    #notification {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #28a745;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 20px;
+      font-size: 1.5vh;
+      display: none;
+      z-index: 10000;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <header>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+        <section class="brand">
+            <div>
+                <h1 style="color: white;font-size: 3rem;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">CLUB GELATO</h1>
+            </div>
+            <div>
+                <nav class="nav">
+                    <a href="index.html">Home</a>
+                    <a href="menu.html">Menu</a>
+                    <a href="about.html">About Us</a>
+                    <a href="#" class="activenav">Order Now</a>
+                    <a href="contact.html">Contact Us</a>
+                </nav>
+            </div>
+        </section>
+    </header>
+  <h1 style="text-decoration: underline;">Choose your cake</h1>
+  <div class="inputradio">
+    <label><input type="radio" name="mode" value="browse" checked onchange="switchMode()" id="mode-browse" /> <label for="mode-browse">Browse</label></label>
+    <label><input type="radio" name="mode" value="custom" onchange="switchMode()" id="mode-custom" /> <label for="mode-custom">Custom</label></label>
+  </div>
+  <div id="browse-section" class="section active">
+    <p>Choose your category:</p>
+    <select id="flavour" onchange="loadImages()" aria-label="Choose cake category">
+      <option value="chocolate">Chocolate</option>
+      <option value="strawberry">Strawberry</option>
+      <option value="cupcake">Cupcake</option>
+      <option value="icecream">Ice Cream</option>
+      <option value="pastry">Pastry</option>
+      <option value="color">Color</option>
+      <option value="other">Other</option>
+    </select>
+
+    <div class="image-grid" id="image-grid" role="list" aria-live="polite" aria-label="Cake images"></div>
+
+    <h2 style="color: white;margin-top: 15vh;margin-bottom: 5vh;">If you want to change your cake from these images, feel free to inform us. Your changes will be accepted.</h2>
+    <label for="browse-expression" style="color: white;"></label><br />
+    <textarea id="browse-expression" rows="3" cols="40" placeholder="Enter your expression about the cake you want:"></textarea>
+  </div>
+
+  <!-- Custom Section -->
+  <div id="custom-section" class="section" aria-live="polite">
+    <h3>Custom Cake Order</h3>
+    <form id="custom-form" onsubmit="handleCustomSubmit(event)" novalidate>
+      <label for="cake_for">Cake For:</label><br />
+      <input type="text" name="cake_for" id="cake_for" required /><br /><br />
+
+      <label for="cake_color">Cake's Color:</label><br />
+      <input type="text" name="cake_color" id="cake_color" required /><br /><br />
+
+      <label for="face">Face:</label><br />
+      <input type="text" name="face" id="face" /><br /><br />
+
+      <label for="flavor">flavour:</label><br />
+      <input type="text" name="flavour" id="flavour" /><br /><br />
+
+      <label for="filling">filling:</label><br />
+      <input type="text" name="filling" id="filling" /><br /><br />
+
+      <label for="frosting">frosting:</label><br />
+      <input type="text" name="frosting" id="frosting" /><br /><br />
+
+      <label for="design">design:</label><br />
+      <input type="text" name="design" id="design" /><br /><br />
+
+      <label for="size_quantity">Size and Quantity:</label><br />
+      <input type="text" name="size_quantity" id="size_quantity" /><br /><br />
+
+      <label for="custom-expression">Your expression about the cake you want:</label><br />
+      <textarea id="custom-expression" rows="3" cols="40"></textarea><br /><br />
+
+      <label for="file-upload" class="file-upload-label" style="cursor:pointer; color:#007bff; text-decoration:underline;">
+        Attach File:
+      </label><br />
+      <input type="file" id="file-upload" name="file-upload" accept="image/*" style="display:none" aria-describedby="file-help" required />
+      <span id="file-name" aria-live="polite"></span><br /><br />
+
+      <p id="file-help" style="color: white;margin-bottom: 3rem;">NOTE: Please attach a file. This can help us get more clear info about your preference. Better if you contact us on WhatsApp.</p>
+      <p>WhatsApp: <a href="https://wa.me/01234567890" target="_blank" rel="noopener noreferrer">01234567890</a></p>
+      <p>Contact us:</p>
+
+      <button type="submit">Proceed to Order</button>
+      <button type="button" onclick="alert('Added to cart')">Add to Cart</button>
+    </form>
+  </div>
+
+  <!-- Lightbox Overlay -->
+  <div id="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Image preview">
+    <span class="close-btn" aria-label="Close lightbox" tabindex="0">&times;</span>
+    <img src="" alt="Cake preview" />
+  </div>
+
+  <!-- Notification -->
+  <div id="notification" role="alert"></div>
+  <a href="step2.html" style="font-size: 3rem;background-color: rgba(0, 0, 0, 0.705);border-radius: 10px;
+                              color: white;
+                              text-decoration: none;
+  ">      proceed to next  >    </a>
+
+  <script>
+    // Switch between browse/custom sections
+    function switchMode() {
+      const mode = document.querySelector('input[name="mode"]:checked').value;
+      document.getElementById('browse-section').classList.toggle('active', mode === 'browse');
+      document.getElementById('custom-section').classList.toggle('active', mode === 'custom');
+    }
+
+    // Show inline notification instead of alert
+    function showNotification(msg, duration = 3000) {
+      const notif = document.getElementById('notification');
+      notif.textContent = msg;
+      notif.style.display = 'block';
+      setTimeout(() => {
+        notif.style.display = 'none';
+      }, duration);
+    }
+
+    // Load images by category with lazy loading and lightbox
+    function loadImages() {
+      const category = document.getElementById('flavour').value;
+      const grid = document.getElementById('image-grid');
+      grid.innerHTML = '';
+
+      const imagesByCategory = {
+        chocolate: ['c1.png', 'c2.png', 'c3.png', 'c4.png', 'c5.png','c1.png', 'c2.png', 'c3.png', 'c4.png',],
+        strawberry: ['s1.png', 's2.png', 's3.png', 's4.png', 's3.png','s1.png', 's2.png', 's3.png', 's4.png',],
+        cupcake: ['c1.png', , 'c3.png', 'c4.png', 'c5.png','c2.png', 'c3.png', 'c4.png', 'c5.png','c2.png'],
+        icecream: ['i1.png', 'i2.png', 'i3.png', 'i4.png', 'i5.png','i2.png', 'i3.png', 'i4.png', 'i5.png' ],
+        pastry: ['blackforest.png', 'c1.png', 'c2.png', 'pudding.png', 'eggless.png', 'f2.png', 'fruit.png', 'pineapple.png', 'wow.png'],
+        color: ['c1.png', 'c2.png', 'c3.png', 'c4.png', 'c5.png'],
+      };
+
+      const images = imagesByCategory[category] || [];
+
+      images.forEach((filename, i) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'image-wrapper';
+
+        const img = document.createElement('img');
+        img.src = `static/images/${category}/${filename}`;
+        img.alt = `${category} cake ${i + 1}`;
+        img.loading = 'lazy'; // lazy load
+        img.tabIndex = 0; // make keyboard focusable
+        img.onclick = () => markSelected(img);
+        img.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            markSelected(img);
+          }
+        });
+
+        // Show lightbox on image click (double click or separate click)
+        img.addEventListener('dblclick', e => {
+          e.stopPropagation();
+          openLightbox(img.src, img.alt);
+        });
+
+        // Button group for user actions
+        const btnGroup = document.createElement('div');
+        btnGroup.className = 'btn-group';
+
+        btnGroup.innerHTML = `
+          <button type="button" aria-label="Prefer this design">I prefer this design</button>
+          <button type="button" aria-label="Order now">Order now</button>
+          <button type="button" aria-label="Add to cart">Add to cart</button>
+        `;
+
+        // Button event listeners
+        btnGroup.children[0].onclick = e => {
+          e.stopPropagation();
+          showNotification('Preferred design: ' + filename);
+          saveSelection(img.src);
+        };
+        btnGroup.children[1].onclick = e => {
+          e.stopPropagation();
+          showNotification('Order now clicked');
+        };
+        btnGroup.children[2].onclick = e => {
+          e.stopPropagation();
+          showNotification('Added to cart');
+        };
+
+        // On mobile, toggle btn group on image click (instead of hover)
+        wrapper.addEventListener('click', () => {
+          btnGroup.classList.toggle('active');
+        });
+
+        wrapper.appendChild(img);
+        wrapper.appendChild(btnGroup);
+        grid.appendChild(wrapper);
+      });
+
+      // Restore previously selected image if any
+      restoreSelection();
+    }
+
+    // Mark selected image with green border and save selection
+    function markSelected(img) {
+      document.querySelectorAll('.image-grid img').forEach(i => i.classList.remove('selected-img'));
+      img.classList.add('selected-img');
+      saveSelection(img.src);
+    }
+
+    // Save selected cake image in localStorage
+    function saveSelection(src) {
+      localStorage.setItem('selectedCake', src);
+    }
+
+    // Restore selected cake from localStorage
+    function restoreSelection() {
+      const saved = localStorage.getItem('selectedCake');
+      if (saved) {
+        const imgs = document.querySelectorAll('.image-grid img');
+        imgs.forEach(img => {
+          if (img.src.endsWith(saved.split('/').pop())) {
+            img.classList.add('selected-img');
+          }
+        });
+      }
+    }
+
+    // Handle custom form submit with validation
+    function handleCustomSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const cakeFor = form.cake_for.value.trim();
+      const cakeColor = form.cake_color.value.trim();
+      const fileInput = form['file-upload'];
+
+      if (!cakeFor) {
+        showNotification('Please enter who the cake is for.');
+        form.cake_for.focus();
+        return;
+      }
+      if (!cakeColor) {
+        showNotification("Please enter the cake's color.");
+        form.cake_color.focus();
+        return;
+      }
+      if (!fileInput.files.length) {
+        showNotification('Please attach a file.');
+        fileInput.focus();
+        return;
+      }
+
+      // Submit form data (placeholder)
+      showNotification('Custom cake order submitted!');
+      form.reset();
+      document.getElementById('file-name').textContent = '';
+    }
+
+    // Mobile-friendly file input: show file name after selection
+    const fileInput = document.getElementById('file-upload');
+    const fileNameDisplay = document.getElementById('file-name');
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files.length > 0) {
+        fileNameDisplay.textContent = 'Selected file: ' + fileInput.files[0].name;
+      } else {
+        fileNameDisplay.textContent = '';
+      }
+    });
+
+    // Clicking label opens file input dialog
+    document.querySelector('label[for="file-upload"]').addEventListener('click', e => {
+      fileInput.click();
+    });
+
+    // Lightbox functionality
+    const lightbox = document.getElementById('lightbox-overlay');
+    const lightboxImage = lightbox.querySelector('img');
+    const closeBtn = lightbox.querySelector('.close-btn');
+
+    function openLightbox(src, alt) {
+      lightboxImage.src = src;
+      lightboxImage.alt = alt;
+      lightbox.style.display = 'flex';
+      closeBtn.focus();
+      document.body.style.overflow = 'hidden'; // Prevent background scroll
+    }
+
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+      lightboxImage.src = '';
+      lightboxImage.alt = '';
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeLightbox);
+    closeBtn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        closeLightbox();
+      }
+    });
+
+    // Close lightbox on click outside image or on ESC
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+        closeLightbox();
+      }
+    });
+
+    window.onload = () => {
+      loadImages();
+      // Restore selection if saved
+      restoreSelection();
+    };
+  </script>
+</body>
+</html>

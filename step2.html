@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Order - Step 2</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nav.css">
+    <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #ffffff;
+        padding: 30px 40px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #444;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="datetime-local"],
+    select {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+    }
+
+    input:focus,
+    select:focus {
+        border-color: #7a9cc6;
+        outline: none;
+    }
+
+    .note {
+        font-size: 0.9em;
+        color: #777;
+        margin-top: 5px;
+    }
+
+    .total-amount {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #2d6a4f;
+        text-align: center;
+        padding: 10px;
+        background-color: #e9f5ec;
+        border-radius: 5px;
+    }
+
+    .proceed-btn {
+        display: block;
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .proceed-btn:hover {
+        background-color: #45a049;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            margin: 20px;
+            padding: 20px;
+        }
+    }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Book Order - Step 2</h1>
+        <form id="orderForm" method="POST">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+            </div>
+
+            <div class="form-group">
+                <label for="place">Place:</label>
+                <input type="text" id="place" name="place">
+            </div>
+            <div class="form-group">
+                <label for="receiveTime">Receive Time:</label>
+                <input type="datetime-local" id="receiveTime" name="receiveTime">
+            </div>
+
+            <div class="form-group">
+                <label for="contactNo">Contact No:</label>
+                <input type="tel" id="contactNo" name="contactNo">
+            </div>
+
+            <div class="form-group">
+                <label for="payment">Payment With:</label>
+                <select id="payment" name="payment">
+                    <option value="app">app</option>
+                    <option value="credit">Credit/Debit Card</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="otherPaymentDiv" style="display: none;">
+                <label for="otherPayment">Specify Payment Method:</label>
+                <input type="text" id="otherPayment" name="otherPayment">
+            </div>
+
+            <div class="form-group">
+                <label for="transactionId">Transaction ID:</label>
+                <input type="text" id="transactionId" name="transactionId">
+                <p class="note">Please send money via app and give your transaction number here. If you prefer offline payment, please contact us in WhatsApp.</p>
+            </div>
+
+            <div class="form-group">
+                <p class="total-amount">Your total bill is tk.999999</p>
+            </div>
+
+            <!-- <div class="form-actions">
+                <button type="submit" class="proceed-btn">Proceed to next ></button>
+            </div> -->
+            <a href="step3.html"class="proceed-btn">Proceed to next</a>
+        </form>
+    </div>
+
+    <script>
+        // Show/hide other payment field based on selection
+        document.getElementById('payment').addEventListener('change', function() {
+            const otherPaymentDiv = document.getElementById('otherPaymentDiv');
+            if (this.value === 'other') {
+                otherPaymentDiv.style.display = 'block';
+            } else {
+                otherPaymentDiv.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
